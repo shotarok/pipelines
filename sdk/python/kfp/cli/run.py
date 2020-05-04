@@ -76,6 +76,14 @@ def get(ctx, watch, run_id):
     namespace = ctx.obj['namespace']
     _display_run(client, namespace, run_id, watch)
 
+@run.command()
+@click.argument('run-id')
+@click.pass_context
+def retry(ctx, run_id):
+    client = ctx.obj['client']
+    client.retry_run(run_id)
+    print('Run {} is retried'.format(run.id))
+
 def _display_run(client, namespace, run_id, watch):
     run = client.get_run(run_id).run
     _print_runs([run])

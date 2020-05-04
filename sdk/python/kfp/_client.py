@@ -640,6 +640,16 @@ class Client(object):
     """
     return self._run_api.get_run(run_id=run_id)
 
+  def retry_run(self, run_id):
+    """Re-initiate a failed or terminated run.
+
+    Args:
+      run_id; id of the run.
+    Returns:
+      An empty dict
+    """
+    return self._run_api.retry_run(run_id=run_id)
+
   def wait_for_run_completion(self, run_id, timeout):
     """Wait for a run to complete.
     Args:
